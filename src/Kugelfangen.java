@@ -19,14 +19,14 @@ public class Kugelfangen {
         Spielfeld spielfeld = new Spielfeld(1000, 1000);
         kugel = new Kugel[3];
 
-        for (int i=0;i<3;i++){
+        for (int i=0;i< kugel.length;i++){
 
             kugel[i] = new Kugel();
 
             int x = (int) (Math.random() * 425 - 200 );
 
             int z = (int) (Math.random() * 425 - 200);
-            kugel[i].verschiebe(x, 0, 20 * i);
+            kugel[i].verschiebe(x, 0, z * i);
 
         }
         dieBox = new Box();
@@ -48,7 +48,7 @@ public class Kugelfangen {
             if (tastatur.unten()) {
                 dieBox.bewegeUnten();
             }
-             for(int i =0; i<4;i++){kugel[i].randomBewege();}
+             for(int i =0; i< kugel.length;i++){kugel[i].randomBewege();}
             Sys.warte();
         }
     }
