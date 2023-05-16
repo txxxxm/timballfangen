@@ -7,6 +7,8 @@ public class Kugelfangen {
 
     private Box dieBox;
     private Kugel[] kugel;
+    double  breite = 1000;
+    double tiefe = 1000;
 
     public Kugelfangen() {
         kamera = new GLEntwicklerkamera();
@@ -16,7 +18,7 @@ public class Kugelfangen {
         himmel = new GLHimmel("src/img/Sterne.jpg");
         tastatur = new GLTastatur();
 
-        Spielfeld spielfeld = new Spielfeld(1000, 1000);
+        Spielfeld spielfeld = new Spielfeld(breite, tiefe);
         kugel = new Kugel[3];
 
         for (int i=0;i< kugel.length;i++){
@@ -29,7 +31,7 @@ public class Kugelfangen {
             kugel[i].verschiebe(x, 0, z * i);
 
         }
-        dieBox = new Box();
+        dieBox = new Box(breite,tiefe);
         fuehreAus();
 
     }
