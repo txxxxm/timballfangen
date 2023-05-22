@@ -20,10 +20,10 @@ public class Kugelfangen {
 
         Spielfeld spielfeld = new Spielfeld(breite, tiefe);
         kugel = new Kugel[3];
-
+        dieBox = new Box(breite,tiefe);
         for (int i=0;i< kugel.length;i++){
 
-            kugel[i] = new Kugel();
+            kugel[i] = new Kugel(dieBox);
 
             int x = (int) (Math.random() * 425 - 200 );
 
@@ -31,7 +31,7 @@ public class Kugelfangen {
             kugel[i].verschiebe(x, 0, z * i);
 
         }
-        dieBox = new Box(breite,tiefe);
+
         fuehreAus();
 
     }
@@ -50,7 +50,9 @@ public class Kugelfangen {
             if (tastatur.unten()) {
                 dieBox.bewegeUnten();
             }
-             for(int i =0; i< kugel.length;i++){kugel[i].randomBewege();}
+             for(int i =0; i< kugel.length;i++){kugel[i].randomBewege();
+
+             }
             Sys.warte();
         }
     }

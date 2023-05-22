@@ -12,34 +12,54 @@ public class Kugel{
     private double radius;
     private boolean istAktiv;
      double vX, vZ;
+    double h = 0;
     private Kugelfangen kugelfangen;
     double q = Math.random()*2.5-Math.random()*2.5;
     double w = Math.random()*2.5-Math.random()*2.5;
 
-    public Kugel() {
+    public Kugel(Box pBox) {
         kugel = new GLKugel(0,39,0,19);
-
+        dieBox = pBox;
     }
     public void randomBewege(){
         vX = q;
         vZ = w;
-        double h = 0;
 
-         kugel.verschiebe(vX,0,vZ);
-        if(h==0) {
-            if (kugel.gibX() - 19 < -425 || kugel.gibX() - 19 > 425) {
-                vX = -1 * vX;
-            }
-            if (kugel.gibZ() - 19 < -425 || kugel.gibZ() - 19 > 425) {
-                vZ = vZ * -1;
-            }
+
+        if(this.getroffen()){kugel.setzeSichtbarkeit(false);}
+        if(kugel.gibZ()<=(-425)||
+                kugel.gibZ()>=425||
+                kugel.gibX()<=(-425)||
+                kugel.gibX()>=425) {
+
         }
+        else {
+            kugel.verschiebe(vX,0,vZ);}
+            if (kugel.gibX()  <= -425 || kugel.gibX()  >= 425) {
+                vX = -vX;
+            }
+            if (kugel.gibZ()  <= -425 || kugel.gibZ()  >= 425) {
+                vZ = -vZ;
+            }
 
 
-     kugel.verschiebe(vX,0,vZ);
+
+
 
     }
     public void verschiebe(double a, double b, double c){
         kugel.verschiebe(a,b,c);
     }
+
+    public boolean getroffen(){
+        double abstand = Math.sqrt(
+                Math.pow(dieBox.gibX()-kugel.gibX(),2)+
+                        Math.pow(dieBox.gibY()-kugel.gibY(),2)+
+                        Math.pow(dieBox.gibZ()-kugel.gibZ(),2)
+        );
+
+        if(abstand<25) {return true;
+        }else return false;
+    }
+
 }
